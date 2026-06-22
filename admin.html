@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Émpor Watches</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Variables ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --char:    #1A1A1A;
+      --gold:    #B8960C;
+      --cream:   #F5F3EF;
+      --warm:    #EFEDE8;
+      --white:   #ffffff;
+      --muted:   #6B6560;
+      --border:  #E0DDD7;
+      --danger:  #C62828;
+      --success: #2E7D32;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Inter', -apple-system, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--cream); min-height: 100vh; color: var(--char); }
+
+    /* ── Login screen ───────────────────────────────────────────────────── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--char);
+    }
+    .login-box {
+      background: var(--white);
+      padding: 52px 44px;
+      width: 420px;
+      max-width: calc(100vw - 32px);
+    }
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--char);
+      margin-bottom: 4px;
+    }
+    .login-logo svg { width: 30px; height: 30px; color: var(--char); flex-shrink: 0; }
+    .login-sub {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    #login-form .field { margin-bottom: 18px; }
+
+    /* ── Topbar ─────────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--char);
+      height: 58px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .tb-left  { display: flex; align-items: center; gap: 28px; overflow: hidden; }
+    .tb-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .tb-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .tb-logo svg { width: 26px; height: 26px; color: rgba(255,255,255,.65); }
+    .tab-nav { display: flex; gap: 2px; }
+    .tab {
+      background: none;
+      border: none;
+      padding: 7px 16px;
+      color: rgba(255,255,255,.5);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: color .2s, background .2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .tab:hover  { color: rgba(255,255,255,.8); }
+    .tab.active { background: rgba(255,255,255,.1); color: #fff; }
+    .tab-badge {
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .tb-email { font-size: 11px; color: rgba(255,255,255,.35); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+    .btn-logout {
+      padding: 6px 14px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.55);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,.14); color: #fff; }
+
+    /* ── Main layout ────────────────────────────────────────────────────── */
+    .main { padding: 28px; max-width: 1360px; margin: 0 auto; }
+
+    /* ── Stats row ──────────────────────────────────────────────────────── */
+    .stats-row { display: flex; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 18px 24px;
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+    }
+    .stat-num {
+      display: block;
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 300;
+      color: var(--char);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-lbl { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── Panel ──────────────────────────────────────────────────────────── */
+    .panel-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .panel-title { font-family: var(--serif); font-size: 30px; font-weight: 400; }
+
+    /* ── Watches grid ───────────────────────────────────────────────────── */
+    .watches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .watch-admin-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .watch-admin-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.09); }
+    .wac-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--warm);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wac-no-img {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(107,101,96,.5);
+    }
+    .wac-status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+    }
+    .st-available { background: #E8F5E9; color: #2E7D32; }
+    .st-sold      { background: rgba(26,26,26,.78); color: #fff; }
+    .st-reserved  { background: #FFF8E1; color: #E65100; }
+    .wac-featured {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 9px;
+      background: rgba(184,150,12,.9);
+      color: #fff;
+      padding: 4px 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
+    }
+    .wac-body { padding: 14px 16px 8px; }
+    .wac-brand { font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .wac-model { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 2px; line-height: 1.2; }
+    .wac-ref   { font-size: 11px; color: var(--muted); margin-bottom: 10px; min-height: 16px; }
+    .wac-foot  { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .wac-price { font-family: var(--serif); font-size: 15px; font-weight: 500; }
+    .wac-actions { display: flex; border-top: 1px solid var(--border); }
+    .btn-edit, .btn-del {
+      flex: 1;
+      padding: 10px 8px;
+      border: none;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      border-right: 1px solid var(--border);
+    }
+    .btn-del { border-right: none; }
+    .btn-edit { background: var(--cream); color: var(--char); }
+    .btn-edit:hover { background: var(--char); color: #fff; }
+    .btn-del  { background: var(--cream); color: var(--danger); }
+    .btn-del:hover  { background: var(--danger); color: #fff; }
+
+    /* ── Brands list ────────────────────────────────────────────────────── */
+    .brands-list { display: flex; flex-direction: column; gap: 8px; max-width: 600px; }
+    .brand-row {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: opacity .2s;
+    }
+    .brand-row.inactive { opacity: .45; }
+    .brand-row-name { font-family: var(--serif); font-size: 18px; font-weight: 400; }
+    .brand-row-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .pill-toggle {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .pill-on  { background: #E8F5E9; color: #2E7D32; }
+    .pill-off { background: var(--warm); color: var(--muted); }
+    .btn-icon-del {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: none;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .btn-icon-del:hover { background: #FFEBEE; color: var(--danger); }
+    .add-brand-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .input-inline {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--char);
+      outline: none;
+      min-width: 220px;
+      transition: border-color .2s;
+      background: var(--white);
+    }
+    .input-inline:focus { border-color: var(--gold); }
+
+    /* ── Buttons ────────────────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--char);
+      color: #fff;
+      border: none;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover    { background: var(--gold); }
+    .btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+    .btn-secondary {
+      padding: 10px 22px;
+      background: none;
+      border: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--char);
+      transition: border-color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--char); }
+    .btn-danger {
+      padding: 10px 22px;
+      background: var(--danger);
+      border: none;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-danger:hover { opacity: .85; }
+    .w-full { width: 100%; }
+
+    /* ── Modal overlay ──────────────────────────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,6,.72);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal {
+      background: var(--white);
+      width: 100%;
+      max-width: 700px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-hd {
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 1;
+    }
+    .modal-title  { font-family: var(--serif); font-size: 24px; font-weight: 400; }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+      padding: 2px 6px;
+      transition: color .2s;
+    }
+    .modal-close:hover { color: var(--char); }
+    .modal-body { padding: 24px 28px; }
+    .modal-ft {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Image upload zone ──────────────────────────────────────────────── */
+    .img-zone {
+      width: 100%;
+      height: 200px;
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: border-color .2s;
+      overflow: hidden;
+      position: relative;
+      background: var(--warm);
+    }
+    .img-zone:hover { border-color: var(--gold); }
+    .img-ph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      pointer-events: none;
+      text-align: center;
+      padding: 20px;
+    }
+    .img-ph p    { font-size: 13px; font-weight: 500; }
+    .img-ph span { font-size: 11px; color: rgba(107,101,96,.55); }
+    .img-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-uploading {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,26,26,.65);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-change-hint {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26,26,26,.65);
+      color: rgba(255,255,255,.85);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .img-zone:hover .img-change-hint { opacity: 1; }
+
+    /* ── Form elements ──────────────────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+    .form-grid .field { margin-bottom: 0; }
+    .field label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--char);
+    }
+    .label-opt { color: var(--muted); font-weight: 400; }
+    .field input, .field select, .field textarea {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--char);
+      outline: none;
+      transition: border-color .2s;
+      background: var(--white);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus  { border-color: var(--gold); }
+    .field textarea        { resize: vertical; min-height: 80px; font-family: var(--sans); }
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--char);
+      user-select: none;
+    }
+    .check-label input[type="checkbox"] { width: 15px; height: 15px; cursor: pointer; accent-color: var(--gold); }
+    .field-error { font-size: 11px; color: var(--danger); min-height: 16px; }
+
+    /* ── Confirm box ────────────────────────────────────────────────────── */
+    .confirm-box {
+      background: var(--white);
+      padding: 40px 44px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+    }
+    .confirm-box h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 8px; }
+    .confirm-box p  { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .confirm-btns   { display: flex; gap: 12px; justify-content: center; }
+
+    /* ── Card badges ────────────────────────────────────────────────────── */
+    .card-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+    }
+    .badge-mint       { background: #E8F5E9; color: #2E7D32; }
+    .badge-excellent  { background: #EDE7F6; color: #512DA8; }
+    .badge-very-good  { background: #FFF8E1; color: #E65100; }
+
+    /* ── Toast ──────────────────────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      padding: 12px 26px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity .25s, transform .25s;
+      z-index: 999;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: calc(100vw - 40px);
+    }
+    .toast-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast-ok   { background: var(--char); color: #fff; }
+    .toast-err  { background: var(--danger); color: #fff; }
+
+    /* ── Empty states ───────────────────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 64px 20px;
+      color: var(--muted);
+    }
+    .empty-state p { font-family: var(--serif); font-size: 20px; margin-bottom: 18px; color: var(--char); }
+    .empty-txt     { font-size: 13px; color: var(--muted); padding: 24px 0 8px; }
+    .loading-txt   { grid-column: 1/-1; text-align: center; padding: 48px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 660px) {
+      .topbar   { padding: 0 16px; }
+      .tb-email { display: none; }
+      .main     { padding: 16px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 10px; }
+      .stat-card { padding: 14px 16px; }
+      .stat-num  { font-size: 30px; }
+      .modal-body { padding: 18px 16px; }
+      .modal-hd   { padding: 16px; }
+      .login-box  { padding: 36px 24px; }
+      .add-brand-row { flex-direction: column; }
+      .input-inline  { min-width: 0; }
+      .confirm-box   { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════ LOGO SVG SYMBOL ═══════════════════════════════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="empor-logo" viewBox="0 0 100 100">
+    <g stroke="currentColor" stroke-width="2.4" stroke-linecap="butt" fill="none">
+      <g transform="rotate(0,50,50)">  <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(45,50,50)"> <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(90,50,50)"> <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(135,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(180,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(225,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(270,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+      <g transform="rotate(315,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ════════════════════════ LOGIN ══════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><use href="#empor-logo"/></svg>
+      ÉMPOR <span style="font-weight:300">Watches</span>
+    </div>
+    <p class="login-sub">Panel de administración</p>
+    <form id="login-form" onsubmit="doLogin(event)">
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" id="l-email" value="amirhernandezfarah06@gmail.com" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="l-pass" required autocomplete="current-password">
+      </div>
+      <p id="l-error" class="field-error" style="margin-bottom:14px"></p>
+      <button type="submit" class="btn-primary w-full" id="l-btn">Iniciar sesión</button>
+    </form>
+  </div>
+</div>
+
+<!-- ════════════════════════ ADMIN ══════════════════════════════════════════ -->
+<div id="admin-screen" style="display:none">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="tb-left">
+      <div class="tb-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><use href="#empor-logo"/></svg>
+        ÉMPOR
+      </div>
+      <nav class="tab-nav">
+        <button class="tab active" data-tab="watches" onclick="switchTab('watches')">
+          Relojes <span id="badge-watches" class="tab-badge">0</span>
+        </button>
+        <button class="tab" data-tab="brands" onclick="switchTab('brands')">
+          Marcas <span id="badge-brands" class="tab-badge">0</span>
+        </button>
+      </nav>
+    </div>
+    <div class="tb-right">
+      <span id="tb-email" class="tb-email"></span>
+      <button class="btn-logout" onclick="doLogout()">Salir</button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="main">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card"><span class="stat-num" id="s-total">—</span><span class="stat-lbl">Total</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-avail">—</span><span class="stat-lbl">Disponibles</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-sold">—</span><span class="stat-lbl">Vendidos</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-res">—</span><span class="stat-lbl">Reservados</span></div>
+    </div>
+
+    <!-- Watches panel -->
+    <div id="panel-watches">
+      <div class="panel-hd">
+        <h2 class="panel-title">Relojes</h2>
+        <button class="btn-primary" onclick="openWatchModal()">+ Añadir reloj</button>
+      </div>
+      <div id="watches-grid" class="watches-grid">
+        <div class="loading-txt">Cargando...</div>
+      </div>
+    </div>
+
+    <!-- Brands panel -->
+    <div id="panel-brands" style="display:none">
+      <div class="panel-hd">
+        <h2 class="panel-title">Marcas</h2>
+        <div class="add-brand-row">
+          <input type="text" id="new-brand-input" placeholder="Nombre de la marca" class="input-inline"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();addBrand();}">
+          <button class="btn-primary" onclick="addBrand()">Añadir</button>
+        </div>
+      </div>
+      <div id="brands-list" class="brands-list">
+        <div class="loading-txt">Cargando...</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ════════════════════════ WATCH MODAL ════════════════════════════════════ -->
+<div id="watch-modal" class="overlay" style="display:none" onclick="if(event.target===this)closeWatchModal()">
+  <div class="modal">
+    <div class="modal-hd">
+      <h3 class="modal-title" id="modal-title">Añadir reloj</h3>
+      <button class="modal-close" onclick="closeWatchModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="watch-form" onsubmit="saveWatch(event)">
+
+        <!-- Image upload -->
+        <div class="img-zone" id="img-zone" onclick="triggerFileInput()">
+          <div id="img-ph" class="img-ph">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 19.5h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+            </svg>
+            <p>Haz clic para subir foto</p>
+            <span>JPG, PNG, WEBP · máx. 8 MB</span>
+          </div>
+          <img id="img-preview" class="img-preview" style="display:none" alt="Vista previa">
+          <div id="img-change-hint" class="img-change-hint">Cambiar foto</div>
+          <div id="img-uploading" class="img-uploading" style="display:none">Subiendo imagen...</div>
+        </div>
+        <input type="file" id="img-file" accept="image/*" style="display:none" onchange="previewImg(this)">
+        <p id="img-error" class="field-error" style="margin-bottom:16px"></p>
+
+        <!-- 2-col fields -->
+        <div class="form-grid">
+          <div class="field">
+            <label>Marca *</label>
+            <select id="f-brand" required>
+              <option value="">Seleccionar...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Modelo *</label>
+            <input type="text" id="f-model" placeholder="Ej: Submariner Date" required>
+          </div>
+          <div class="field">
+            <label>Referencia <span class="label-opt">(opcional)</span></label>
+            <input type="text" id="f-ref" placeholder="Ej: 126610LN">
+          </div>
+          <div class="field">
+            <label>Año <span class="label-opt">(opcional)</span></label>
+            <input type="number" id="f-year" placeholder="2022" min="1900" max="2099">
+          </div>
+          <div class="field">
+            <label>Condición</label>
+            <select id="f-condition">
+              <option value="Mint">Mint</option>
+              <option value="Excellent" selected>Excellent</option>
+              <option value="Very Good">Very Good</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Estado</label>
+            <select id="f-status">
+              <option value="available">Disponible (visible al público)</option>
+              <option value="reserved">Reservado (oculto)</option>
+              <option value="sold">Vendido (oculto)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Precio <span class="label-opt">(opcional)</span></label>
+            <input type="number" id="f-price" placeholder="18500" min="0" step="0.01">
+          </div>
+          <div class="field">
+            <label>Moneda</label>
+            <select id="f-currency">
+              <option value="USD">USD — Dólares</option>
+              <option value="MXN">MXN — Pesos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Descripción <span class="label-opt">(opcional)</span></label>
+          <textarea id="f-desc" placeholder="Caja y papeles, servicio reciente, estado de conservación..."></textarea>
+        </div>
+
+        <label class="check-label" style="margin-bottom:24px">
+          <input type="checkbox" id="f-featured">
+          <span>Destacar en la página principal (aparece primero en el catálogo)</span>
+        </label>
+
+        <div class="modal-ft">
+          <button type="button" class="btn-secondary" onclick="closeWatchModal()">Cancelar</button>
+          <button type="submit" class="btn-primary" id="save-btn">
+            <span id="save-txt">Guardar</span>
+            <span id="save-spin" style="display:none">Guardando...</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ CONFIRM DELETE ═════════════════════════════════ -->
+<div id="confirm-overlay" class="overlay" style="display:none" onclick="if(event.target===this)closeConfirm()">
+  <div class="confirm-box">
+    <h3>¿Eliminar este reloj?</h3>
+    <p>Esta acción no puede deshacerse.<br>La foto también será eliminada del servidor.</p>
+    <div class="confirm-btns">
+      <button class="btn-secondary" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn-danger"    onclick="doDelete()">Sí, eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ TOAST ══════════════════════════════════════════ -->
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<!-- ════════════════════════ SCRIPTS ════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="empor-config.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ÉMPOR WATCHES — Admin Panel JS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+// ── Supabase init ──────────────────────────────────────────────────────────
+const { createClient } = window.supabase;
+const sb = createClient(EMPOR.supabaseUrl, EMPOR.supabaseKey);
+
+// ── State ──────────────────────────────────────────────────────────────────
+let allWatches = [];
+let allBrands  = [];
+let editId     = null;   // watch id being edited (null = new)
+let deleteId   = null;   // watch id pending deletion
+let currentImgUrl = null; // existing or newly uploaded image URL
+let imgDirty   = false;  // user selected a new file
+
+// ── Auth ───────────────────────────────────────────────────────────────────
+sb.auth.onAuthStateChange((_event, session) => {
+  if (session) {
+    showAdmin(session.user.email);
+    loadAll();
+  } else {
+    showLogin();
+  }
+});
+
+async function doLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('l-btn');
+  const err = document.getElementById('l-error');
+  err.textContent = '';
+  btn.textContent = 'Iniciando sesión...';
+  btn.disabled    = true;
+
+  const { error } = await sb.auth.signInWithPassword({
+    email:    document.getElementById('l-email').value.trim(),
+    password: document.getElementById('l-pass').value,
+  });
+
+  if (error) {
+    err.textContent = 'Correo o contraseña incorrectos.';
+    btn.textContent = 'Iniciar sesión';
+    btn.disabled    = false;
+  }
+}
+
+async function doLogout() {
+  await sb.auth.signOut();
+}
+
+// ── Screen toggle ──────────────────────────────────────────────────────────
+function showLogin() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-screen').style.display = 'none';
+}
+
+function showAdmin(email) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-screen').style.display = 'block';
+  document.getElementById('tb-email').textContent = email;
+}
+
+// ── Tabs ───────────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(b =>
+    b.classList.toggle('active', b.dataset.tab === tab)
+  );
+  document.getElementById('panel-watches').style.display = tab === 'watches' ? 'block' : 'none';
+  document.getElementById('panel-brands').style.display  = tab === 'brands'  ? 'block' : 'none';
+}
+
+// ── Load everything ────────────────────────────────────────────────────────
+async function loadAll() {
+  await Promise.all([loadWatches(), loadBrands()]);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  WATCHES
+// ═══════════════════════════════════════════════════════════════════════════
+async function loadWatches() {
+  const { data, error } = await sb
+    .from('watches')
+    .select('*')
+    .order('featured', { ascending: false })
+    .order('created_at', { ascending: false });
+
+  if (error) { toast('Error al cargar relojes', false); return; }
+  allWatches = data || [];
+  renderWatches();
+  updateStats();
+}
+
+function updateStats() {
+  const avail = allWatches.filter(w => w.status === 'available').length;
+  const sold  = allWatches.filter(w => w.status === 'sold').length;
+  const res   = allWatches.filter(w => w.status === 'reserved').length;
+  document.getElementById('s-total').textContent = allWatches.length;
+  document.getElementById('s-avail').textContent = avail;
+  document.getElementById('s-sold').textContent  = sold;
+  document.getElementById('s-res').textContent   = res;
+  document.getElementById('badge-watches').textContent = allWatches.length;
+}
+
+function renderWatches() {
+  const grid = document.getElementById('watches-grid');
+  if (!allWatches.length) {
+    grid.innerHTML = `<div class="empty-state">
+      <p>No hay relojes todavía.</p>
+      <button class="btn-primary" onclick="openWatchModal()">+ Añadir el primero</button>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = allWatches.map(watchCard).join('');
+}
+
+function watchCard(w) {
+  const stLabel = { available: 'Disponible', sold: 'Vendido', reserved: 'Reservado' };
+  const stClass = { available: 'st-available', sold: 'st-sold', reserved: 'st-reserved' };
+  const cClass  = { 'Mint': 'badge-mint', 'Excellent': 'badge-excellent', 'Very Good': 'badge-very-good' };
+  const price   = w.price ? `$${Number(w.price).toLocaleString('en-US')} ${w.currency || 'USD'}` : 'Precio a consultar';
+  const imgBg   = w.image_url ? `style="background-image:url('${esc(w.image_url)}')"` : '';
+
+  return `<div class="watch-admin-card">
+    <div class="wac-img" ${imgBg}>
+      ${!w.image_url ? '<div class="wac-no-img">Sin foto</div>' : ''}
+      <span class="${stClass[w.status] || 'st-available'} wac-status">${stLabel[w.status] || w.status}</span>
+      ${w.featured ? '<span class="wac-featured">★ Destacado</span>' : ''}
+    </div>
+    <div class="wac-body">
+      <p class="wac-brand">${esc(w.brand)}</p>
+      <h3 class="wac-model">${esc(w.model)}</h3>
+      <p class="wac-ref">${[w.reference ? 'Ref. ' + w.reference : '', w.year || ''].filter(Boolean).join(' · ')}</p>
+      <div class="wac-foot">
+        <span class="wac-price">${price}</span>
+        <span class="card-badge ${cClass[w.condition] || 'badge-excellent'}">${esc(w.condition || 'Excellent')}</span>
+      </div>
+    </div>
+    <div class="wac-actions">
+      <button class="btn-edit" onclick="openWatchModal('${w.id}')">✎ Editar</button>
+      <button class="btn-del"  onclick="confirmDelete('${w.id}')">✕ Eliminar</button>
+    </div>
+  </div>`;
+}
+
+// ── Watch modal ────────────────────────────────────────────────────────────
+function openWatchModal(id = null) {
+  editId        = id;
+  currentImgUrl = null;
+  imgDirty      = false;
+
+  document.getElementById('modal-title').textContent = id ? 'Editar reloj' : 'Añadir reloj';
+  document.getElementById('watch-modal').style.display = 'flex';
+
+  resetForm();
+  populateBrandSelect();
+
+  if (id) {
+    const w = allWatches.find(x => x.id === id);
+    if (w) fillForm(w);
+  }
+}
+
+function closeWatchModal() {
+  document.getElementById('watch-modal').style.display = 'none';
+  editId = null; currentImgUrl = null; imgDirty = false;
+}
+
+function resetForm() {
+  document.getElementById('watch-form').reset();
+  document.getElementById('img-preview').style.display = 'none';
+  document.getElementById('img-ph').style.display      = 'flex';
+  document.getElementById('img-change-hint').style.display = 'none';
+  document.getElementById('img-error').textContent     = '';
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('save-txt').style.display  = '';
+  document.getElementById('save-spin').style.display = 'none';
+  document.getElementById('img-file').value = '';
+}
+
+function fillForm(w) {
+  document.getElementById('f-brand').value     = w.brand      || '';
+  document.getElementById('f-model').value     = w.model      || '';
+  document.getElementById('f-ref').value       = w.reference  || '';
+  document.getElementById('f-year').value      = w.year       || '';
+  document.getElementById('f-condition').value = w.condition  || 'Excellent';
+  document.getElementById('f-status').value    = w.status     || 'available';
+  document.getElementById('f-price').value     = w.price      || '';
+  document.getElementById('f-currency').value  = w.currency   || 'USD';
+  document.getElementById('f-desc').value      = w.description || '';
+  document.getElementById('f-featured').checked = !!w.featured;
+
+  if (w.image_url) {
+    currentImgUrl = w.image_url;
+    const prev = document.getElementById('img-preview');
+    prev.src = w.image_url;
+    prev.style.display = 'block';
+    document.getElementById('img-ph').style.display = 'none';
+    document.getElementById('img-change-hint').style.display = 'block';
+  }
+}
+
+function populateBrandSelect() {
+  const sel = document.getElementById('f-brand');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Seleccionar marca...</option>' +
+    allBrands
+      .filter(b => b.active)
+      .map(b => `<option value="${esc(b.name)}">${esc(b.name)}</option>`)
+      .join('');
+  if (cur) sel.value = cur;
+}
+
+// ── Save watch ─────────────────────────────────────────────────────────────
+async function saveWatch(e) {
+  e.preventDefault();
+
+  const btn  = document.getElementById('save-btn');
+  const txt  = document.getElementById('save-txt');
+  const spin = document.getElementById('save-spin');
+  btn.disabled = true;
+  txt.style.display  = 'none';
+  spin.style.display = '';
+
+  // Upload new image if user picked one
+  if (imgDirty) {
+    const file = document.getElementById('img-file').files[0];
+    if (file) {
+      const url = await uploadImg(file);
+      if (!url) { btn.disabled = false; txt.style.display = ''; spin.style.display = 'none'; return; }
+      currentImgUrl = url;
+    }
+  }
+
+  const payload = {
+    brand:       document.getElementById('f-brand').value,
+    model:       document.getElementById('f-model').value.trim(),
+    reference:   document.getElementById('f-ref').value.trim(),
+    year:        parseInt(document.getElementById('f-year').value) || null,
+    condition:   document.getElementById('f-condition').value,
+    status:      document.getElementById('f-status').value,
+    price:       parseFloat(document.getElementById('f-price').value) || null,
+    currency:    document.getElementById('f-currency').value,
+    description: document.getElementById('f-desc').value.trim(),
+    featured:    document.getElementById('f-featured').checked,
+    image_url:   currentImgUrl || '',
+  };
+
+  const { error } = editId
+    ? await sb.from('watches').update(payload).eq('id', editId)
+    : await sb.from('watches').insert([payload]);
+
+  if (error) {
+    toast('Error al guardar: ' + error.message, false);
+    btn.disabled = false; txt.style.display = ''; spin.style.display = 'none';
+    return;
+  }
+
+  toast(editId ? 'Reloj actualizado ✓' : 'Reloj añadido al catálogo ✓');
+  closeWatchModal();
+  loadWatches();
+}
+
+// ── Delete watch ───────────────────────────────────────────────────────────
+function confirmDelete(id) {
+  deleteId = id;
+  document.getElementById('confirm-overlay').style.display = 'flex';
+}
+
+function closeConfirm() {
+  deleteId = null;
+  document.getElementById('confirm-overlay').style.display = 'none';
+}
+
+async function doDelete() {
+  if (!deleteId) return;
+
+  // Optionally remove image from storage
+  const watch = allWatches.find(w => w.id === deleteId);
+  if (watch?.image_url) {
+    try {
+      const path = watch.image_url.split('/watch-images/')[1];
+      if (path) await sb.storage.from('watch-images').remove([path]);
+    } catch (_) { /* ignore storage errors */ }
+  }
+
+  const { error } = await sb.from('watches').delete().eq('id', deleteId);
+  closeConfirm();
+  if (error) { toast('Error al eliminar', false); return; }
+  toast('Reloj eliminado');
+  loadWatches();
+}
+
+// ── Image handling ─────────────────────────────────────────────────────────
+function triggerFileInput() {
+  document.getElementById('img-file').click();
+}
+
+function previewImg(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  if (file.size > 8 * 1024 * 1024) {
+    document.getElementById('img-error').textContent = 'La imagen supera los 8 MB permitidos.';
+    input.value = '';
+    return;
+  }
+  document.getElementById('img-error').textContent = '';
+  imgDirty = true;
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const prev = document.getElementById('img-preview');
+    prev.src = ev.target.result;
+    prev.style.display = 'block';
+    document.getElementById('img-ph').style.display = 'none';
+    document.getElementById('img-change-hint').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function uploadImg(file) {
+  document.getElementById('img-uploading').style.display = 'flex';
+
+  const ext  = file.name.split('.').pop().toLowerCase() || 'jpg';
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2,9)}.${ext}`;
+
+  const { error } = await sb.storage
+    .from('watch-images')
+    .upload(path, file, { upsert: true, contentType: file.type });
+
+  document.getElementById('img-uploading').style.display = 'none';
+
+  if (error) {
+    toast('Error subiendo imagen: ' + error.message, false);
+    return null;
+  }
+
+  const { data: { publicUrl } } = sb.storage.from('watch-images').getPublicUrl(path);
+  return publicUrl;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  BRANDS
+// ═══════════════════════════════════════════════════════════════════════════
+async function loadBrands() {
+  const { data, error } = await sb
+    .from('brands')
+    .select('*')
+    .order('sort_order')
+    .order('name');
+
+  if (error) return;
+  allBrands = data || [];
+  renderBrands();
+  document.getElementById('badge-brands').textContent = allBrands.length;
+}
+
+function renderBrands() {
+  const list = document.getElementById('brands-list');
+
+  if (!allBrands.length) {
+    list.innerHTML = '<p class="empty-txt">No hay marcas. Añade la primera arriba.</p>';
+    return;
+  }
+
+  list.innerHTML = allBrands.map(b => `
+    <div class="brand-row ${b.active ? '' : 'inactive'}">
+      <span class="brand-row-name">${esc(b.name)}</span>
+      <div class="brand-row-actions">
+        <button class="pill-toggle ${b.active ? 'pill-on' : 'pill-off'}"
+                onclick="toggleBrand('${b.id}', ${!b.active})">
+          ${b.active ? 'Activa' : 'Inactiva'}
+        </button>
+        <button class="btn-icon-del" onclick="deleteBrand('${b.id}', '${esc(b.name)}')" title="Eliminar marca">✕</button>
+      </div>
+    </div>`
+  ).join('');
+}
+
+async function addBrand() {
+  const input = document.getElementById('new-brand-input');
+  const name  = input.value.trim();
+  if (!name) return;
+
+  const maxOrder = allBrands.reduce((m, b) => Math.max(m, b.sort_order || 0), 0);
+  const { error } = await sb.from('brands').insert([{ name, sort_order: maxOrder + 1 }]);
+
+  if (error) {
+    toast(error.code === '23505' ? `"${name}" ya existe` : 'Error al añadir', false);
+    return;
+  }
+  input.value = '';
+  toast(`Marca "${name}" añadida ✓`);
+  loadBrands();
+}
+
+async function toggleBrand(id, active) {
+  const { error } = await sb.from('brands').update({ active }).eq('id', id);
+  if (error) { toast('Error al actualizar', false); return; }
+  loadBrands();
+}
+
+async function deleteBrand(id, name) {
+  if (!confirm(`¿Eliminar la marca "${name}"?\n\nLos relojes que la usen no serán eliminados, pero perderán la marca.`)) return;
+  const { error } = await sb.from('brands').delete().eq('id', id);
+  if (error) { toast('Error al eliminar', false); return; }
+  toast(`Marca "${name}" eliminada`);
+  loadBrands();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════════════════════════════════════
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let toastTimer;
+function toast(msg, ok = true) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className   = `toast ${ok ? 'toast-ok' : 'toast-err'} toast-show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('toast-show'), 3600);
+}
+</script>
+
+</body>
+</html>

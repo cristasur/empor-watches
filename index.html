@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Émpor Watches — Relojes de Lujo Certificados | México</title>
+    <meta name="description" content="Compra, venta y consignación de relojes de alta gama en México. Rolex, Patek Philippe, Audemars Piguet, Cartier, Omega. Autenticidad garantizada en cada pieza.">
+    <meta property="og:title" content="Émpor Watches — Relojes de Alta Gama">
+    <meta property="og:description" content="Especialistas en compra, venta y consignación de relojes de lujo. Autenticidad garantizada.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --cream:      #F5F3EF;
+            --charcoal:   #1A1A1A;
+            --charcoal90: rgba(26,26,26,0.92);
+            --gold:       #B8960C;
+            --gold-h:     #9A7D0A;
+            --warm:       #EFEDE8;
+            --muted:      #6B6560;
+            --border:     #E0DDD7;
+            --serif:      'Cormorant Garamond', Georgia, serif;
+            --sans:       'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--cream);
+            color: var(--charcoal);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 1000;
+            height: 76px;
+            padding: 0 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+        }
+
+        nav.scrolled {
+            background: var(--charcoal90);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(255,255,255,.07);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 500;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-svg {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .nav-logo span { color: var(--gold); font-weight: 300; letter-spacing: .08em; text-transform: none; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: rgba(255,255,255,.78);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .nav-wa {
+            border: 1px solid var(--gold) !important;
+            color: var(--gold) !important;
+            padding: 8px 20px;
+            transition: background .2s, color .2s !important;
+        }
+
+        .nav-wa:hover {
+            background: var(--gold) !important;
+            color: #fff !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: #fff;
+            transition: .3s;
+        }
+
+        /* ─── MOBILE MENU ─── */
+        #mob-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,8,6,.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        #mob-menu a {
+            font-family: var(--serif);
+            font-size: 38px;
+            font-weight: 300;
+            color: #fff;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        #mob-menu a:hover { color: var(--gold); }
+
+        #mob-menu .mob-sub {
+            font-family: var(--sans);
+            font-size: 13px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4);
+        }
+
+        #mob-close {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,.6);
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            height: 100svh;
+            min-height: 620px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            transform: scale(1.06);
+            animation: heroZoom 10s ease forwards;
+        }
+
+        @keyframes heroZoom { to { transform: scale(1); } }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(8,6,3,.25) 0%, rgba(8,6,3,.60) 60%, rgba(8,6,3,.80) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            padding: 0 24px;
+        }
+
+        .hero-eyebrow {
+            font-size: 10px;
+            letter-spacing: .36em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp .9s .4s forwards;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(56px, 8vw, 104px);
+            font-weight: 300;
+            color: #fff;
+            line-height: .95;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp .9s .7s forwards;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-sub {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255,255,255,.65);
+            letter-spacing: .01em;
+            margin-bottom: 44px;
+            opacity: 0;
+            animation: fadeUp .9s 1s forwards;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp .9s 1.2s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 32px;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 1px;
+            cursor: pointer;
+            transition: all .25s;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline-white { border-color: rgba(255,255,255,.55); color: #fff; }
+        .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+        .btn-gold { background: var(--gold); border-color: var(--gold); color: #fff; }
+        .btn-gold:hover { background: var(--gold-h); border-color: var(--gold-h); }
+        .btn-dark { background: var(--charcoal); border-color: var(--charcoal); color: #fff; }
+        .btn-dark:hover { background: var(--gold); border-color: var(--gold); }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeUp .9s 1.8s forwards;
+        }
+
+        .hero-scroll .line {
+            width: 1px;
+            height: 52px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        .hero-scroll span {
+            font-size: 9px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.4);
+        }
+
+        /* ─── TRUST BAR ─── */
+        .trust-bar { background: var(--charcoal); }
+
+        .trust-bar-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .trust-item {
+            padding: 32px 36px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            border-right: 1px solid rgba(255,255,255,.06);
+        }
+
+        .trust-item:last-child { border-right: none; }
+
+        .trust-icon { width: 32px; height: 32px; flex-shrink: 0; color: var(--gold); margin-top: 2px; }
+
+        .trust-item h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+
+        .trust-item p { font-size: 12px; color: rgba(255,255,255,.42); line-height: 1.5; }
+
+        /* ─── SECTION UTILITIES ─── */
+        .s-label {
+            font-family: var(--sans);
+            font-size: 10px;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .s-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 58px);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--charcoal);
+        }
+
+        .s-title em { font-style: italic; color: var(--gold); }
+
+        /* ─── CATALOG ─── */
+        .catalog-wrapper { background: var(--cream); }
+
+        .catalog-section {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 100px 64px;
+        }
+
+        .catalog-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            gap: 24px;
+        }
+
+        .catalog-link {
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 3px;
+            white-space: nowrap;
+            transition: color .2s;
+            margin-bottom: 8px;
+        }
+
+        .catalog-link:hover { color: var(--gold); }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .watch-card {
+            display: block;
+            background: #fff;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow .3s, border-color .3s, transform .3s;
+        }
+
+        .watch-card:hover {
+            box-shadow: 0 16px 48px rgba(26,26,26,.10);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .watch-card:hover .card-img-inner { transform: scale(1.05); }
+
+        .card-img-wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--warm);
+        }
+
+        .card-img-inner {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .55s ease;
+        }
+
+        .card-body { padding: 22px 24px 26px; }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            margin-bottom: 14px;
+        }
+
+        .badge-mint      { background: #E8F5E9; color: #2E7D32; }
+        .badge-excellent { background: #EDE7F6; color: #512DA8; }
+        .badge-very-good { background: #FFF8E1; color: #E65100; }
+
+        .card-brand {
+            font-size: 9px;
+            letter-spacing: .26em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .card-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 4px;
+        }
+
+        .card-ref { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+
+        .card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .card-price { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+
+        .card-cta {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ─── BRANDS ─── */
+        .brands-wrapper { background: var(--charcoal); padding: 48px 64px; }
+
+        .brands-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .brand-sep {
+            font-size: 10px;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.25);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: .08em;
+            color: rgba(255,255,255,.28);
+            text-transform: uppercase;
+            transition: color .25s;
+            cursor: default;
+        }
+
+        .brand-name:hover { color: rgba(255,255,255,.75); }
+
+        .brand-divider { width: 1px; height: 18px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+
+        /* ─── CONSIGNMENT ─── */
+        .consign-wrapper { background: var(--warm); }
+
+        .consign-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 100px 64px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .consign-img-wrap { position: relative; height: 580px; }
+
+        .consign-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .consign-badge {
+            position: absolute;
+            bottom: 32px;
+            right: -24px;
+            background: var(--charcoal);
+            padding: 28px 36px;
+            min-width: 200px;
+        }
+
+        .consign-badge .big {
+            font-family: var(--serif);
+            font-size: 54px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            display: block;
+        }
+
+        .consign-badge p {
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.45);
+            margin-top: 4px;
+        }
+
+        .consign-text .s-title { margin-bottom: 20px; }
+
+        .consign-desc { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 40px; }
+        .consign-desc strong { color: var(--charcoal); font-weight: 600; }
+
+        .steps { display: flex; flex-direction: column; gap: 32px; margin-bottom: 44px; }
+
+        .step { display: flex; gap: 20px; align-items: flex-start; }
+
+        .step-n {
+            font-family: var(--serif);
+            font-size: 44px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            min-width: 42px;
+        }
+
+        .step h4 {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+        /* ─── ABOUT ─── */
+        .about-wrapper { background: var(--charcoal); }
+
+        .about-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 100px 64px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 96px;
+            align-items: center;
+        }
+
+        .about-label { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+
+        .about-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 56px);
+            font-weight: 300;
+            color: #fff;
+            line-height: 1.05;
+            margin-bottom: 32px;
+        }
+
+        .about-title em { font-style: italic; color: var(--gold); }
+
+        .about-text { font-size: 15px; color: rgba(255,255,255,.55); line-height: 1.85; margin-bottom: 18px; }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,.06);
+            margin-top: 52px;
+        }
+
+        .stat { background: var(--charcoal); padding: 32px 24px; text-align: center; }
+
+        .stat-num {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-lbl { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.38); }
+
+        .about-img-wrap { position: relative; height: 620px; }
+
+        .about-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .about-frame {
+            position: absolute;
+            top: -18px; right: -18px; bottom: 18px; left: 18px;
+            border: 1px solid rgba(184,150,12,.28);
+            pointer-events: none;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .testi-wrapper { background: var(--cream); padding: 100px 64px; }
+
+        .testi-inner { max-width: 1200px; margin: 0 auto; }
+
+        .testi-head { text-align: center; margin-bottom: 60px; }
+
+        .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+
+        .testi-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 48px;
+            position: relative;
+        }
+
+        .testi-card::before {
+            content: '\201C';
+            font-family: var(--serif);
+            font-size: 130px;
+            color: var(--gold);
+            opacity: .12;
+            position: absolute;
+            top: 8px; left: 28px;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .testi-quote {
+            font-family: var(--serif);
+            font-size: 21px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.55;
+            color: var(--charcoal);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .testi-author { display: flex; align-items: center; gap: 14px; }
+
+        .testi-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--warm);
+            flex-shrink: 0;
+        }
+
+        .testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .testi-author strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .testi-author span { font-size: 11px; color: var(--muted); }
+
+        /* ─── CONTACT ─── */
+        .contact-wrapper { background: var(--warm); padding: 100px 64px; }
+
+        .contact-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 54px);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .contact-h2 em { font-style: italic; color: var(--gold); }
+
+        .contact-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+
+        .contact-detail { display: flex; align-items: center; gap: 12px; font-size: 14px; margin-bottom: 14px; color: var(--charcoal); }
+        .contact-detail svg { color: var(--gold); flex-shrink: 0; }
+
+        .wa-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 1px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            margin-top: 12px;
+            transition: background .2s;
+        }
+
+        .wa-cta:hover { background: #1ebe5c; }
+
+        /* ─── FORM ─── */
+        .form { display: flex; flex-direction: column; gap: 16px; }
+
+        .fg { display: flex; flex-direction: column; gap: 6px; }
+
+        .fg label { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--charcoal); }
+
+        .fg input, .fg select, .fg textarea {
+            padding: 13px 16px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-family: var(--sans);
+            font-size: 14px;
+            color: var(--charcoal);
+            outline: none;
+            border-radius: 1px;
+            transition: border-color .2s;
+            -webkit-appearance: none;
+        }
+
+        .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--gold); }
+        .fg textarea { resize: vertical; min-height: 110px; }
+
+        .form-submit {
+            padding: 15px 32px;
+            background: var(--charcoal);
+            color: #fff;
+            border: none;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 1px;
+            transition: background .25s;
+        }
+
+        .form-submit:hover { background: var(--gold); }
+
+        /* ─── FOOTER ─── */
+        footer { background: #111; padding: 72px 64px 0; }
+
+        .footer-grid {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 56px;
+            padding-bottom: 56px;
+        }
+
+        .f-logo {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .f-logo span { color: var(--gold); font-weight: 300; text-transform: none; letter-spacing: .06em; }
+
+        .f-logo-svg { width: 28px; height: 28px; color: rgba(255,255,255,.6); flex-shrink: 0; }
+
+        .f-desc { font-size: 13px; color: rgba(255,255,255,.38); line-height: 1.75; margin-bottom: 24px; }
+
+        .f-social { display: flex; gap: 12px; }
+
+        .f-soc {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(255,255,255,.12);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,.45);
+            text-decoration: none;
+            transition: border-color .2s, color .2s;
+        }
+
+        .f-soc:hover { border-color: var(--gold); color: var(--gold); }
+
+        .f-col h5 { font-family: var(--sans); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 20px; }
+
+        .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+        .f-col a { font-size: 13px; color: rgba(255,255,255,.48); text-decoration: none; transition: color .2s; }
+        .f-col a:hover { color: #fff; }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 28px 0 36px;
+            border-top: 1px solid rgba(255,255,255,.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom p { font-size: 11px; color: rgba(255,255,255,.22); }
+        .f-tagline { font-family: var(--serif); font-size: 14px; font-style: italic; color: rgba(255,255,255,.3); }
+
+        /* ─── WHATSAPP FLOAT ─── */
+        .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 990; display: flex; align-items: center; gap: 10px; }
+
+        .wa-label-bubble {
+            background: var(--charcoal);
+            color: #fff;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: opacity .25s, transform .25s;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .wa-float:hover .wa-label-bubble { opacity: 1; transform: translateX(0); }
+
+        .wa-btn-float {
+            width: 58px; height: 58px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(37,211,102,.38);
+            animation: waPulse 2.8s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: .35; }
+            50%       { opacity: .9; }
+        }
+
+        @keyframes waPulse {
+            0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,.38); }
+            50%       { box-shadow: 0 4px 36px rgba(37,211,102,.65); }
+        }
+
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-l { opacity: 0; transform: translateX(-32px); transition: opacity .8s ease, transform .8s ease; }
+        .reveal-l.visible { opacity: 1; transform: translateX(0); }
+        .reveal-r { opacity: 0; transform: translateX(32px); transition: opacity .8s ease, transform .8s ease; }
+        .reveal-r.visible { opacity: 1; transform: translateX(0); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            nav { padding: 0 32px; }
+            .catalog-section, .consign-inner, .about-inner,
+            .testi-wrapper, .contact-wrapper, footer { padding-left: 32px; padding-right: 32px; }
+            .brands-wrapper { padding: 40px 32px; }
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+            .consign-inner { gap: 48px; }
+            .about-inner { gap: 56px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .trust-bar-inner { grid-template-columns: 1fr 1fr; }
+            .trust-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+            .trust-item:nth-child(2), .trust-item:nth-child(4) { border-right: none; }
+            .catalog-section { padding: 72px 20px; }
+            .catalog-grid { grid-template-columns: 1fr; }
+            .catalog-head { flex-direction: column; align-items: flex-start; }
+            .brands-wrapper { padding: 36px 20px; }
+            .brands-inner { gap: 12px; }
+            .consign-inner { grid-template-columns: 1fr; padding: 72px 20px; gap: 40px; }
+            .consign-img-wrap { height: 340px; }
+            .consign-badge { right: 0; }
+            .about-inner { grid-template-columns: 1fr; padding: 72px 20px; gap: 40px; }
+            .about-img-wrap { height: 360px; }
+            .about-frame { display: none; }
+            .testi-wrapper { padding: 72px 20px; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .testi-card { padding: 32px 24px; }
+            .contact-wrapper { padding: 72px 20px; }
+            .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+            footer { padding: 56px 20px 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 46px; }
+            .hero-btns { flex-direction: column; align-items: center; }
+            .trust-bar-inner { grid-template-columns: 1fr; }
+            .trust-item { border-right: none; }
+            .about-stats { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════ LOGO SVG (reutilizable vía <use>) ════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="empor-logo" viewBox="0 0 100 100">
+        <g stroke="currentColor" stroke-width="2.4" stroke-linecap="butt" fill="none">
+            <g transform="rotate(0,50,50)">  <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(45,50,50)"> <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(90,50,50)"> <line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(135,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(180,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(225,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(270,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+            <g transform="rotate(315,50,50)"><line x1="60" y1="49" x2="93" y2="44"/><line x1="60" y1="51" x2="93" y2="56"/></g>
+        </g>
+    </symbol>
+</svg>
+
+<!-- ════ NAVIGATION ════ -->
+<nav id="navbar">
+    <a href="#inicio" class="nav-logo">
+        <svg class="nav-logo-svg" aria-hidden="true"><use href="#empor-logo"/></svg>
+        ÉMPOR <span>Watches</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#consignacion">Consignación</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="https://wa.me/529993421623?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20Empor%20Watches."
+               class="nav-wa" target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMob()" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ════ MOBILE MENU ════ -->
+<div id="mob-menu" role="dialog" aria-modal="true" aria-label="Navegación">
+    <button id="mob-close" onclick="toggleMob()" aria-label="Cerrar">✕</button>
+    <a href="#catalogo"     onclick="toggleMob()">Catálogo</a>
+    <a href="#consignacion" onclick="toggleMob()">Consignación</a>
+    <a href="#nosotros"     onclick="toggleMob()">Nosotros</a>
+    <a href="#contacto"     onclick="toggleMob()">Contacto</a>
+    <a href="https://wa.me/529993421623" class="mob-sub" target="_blank" rel="noopener">+52 999 342 1623</a>
+</div>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="inicio" aria-label="Portada Émpor Watches">
+    <div class="hero-bg" role="img" aria-label="Reloj de lujo"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Compra &nbsp;·&nbsp; Venta &nbsp;·&nbsp; Consignación &nbsp;·&nbsp; Asesoría</p>
+        <h1>Tiempo<br>que <em>vale</em></h1>
+        <p class="hero-sub">Especialistas en relojes de alta gama.<br>Cada pieza certificada, cada transacción respaldada.</p>
+        <div class="hero-btns">
+            <a href="#catalogo" class="btn btn-outline-white">Ver catálogo</a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20conocer%20el%20cat%C3%A1logo%20de%20Empor%20Watches."
+               class="btn btn-gold" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Consultar ahora
+            </a>
+        </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+        <div class="line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ════ TRUST BAR ════ -->
+<div class="trust-bar" role="list" aria-label="Pilares de confianza">
+    <div class="trust-bar-inner">
+        <div class="trust-item" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            <div><h4>Autenticidad Garantizada</h4><p>Certificación experta en cada pieza</p></div>
+        </div>
+        <div class="trust-item" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div><h4>Precio Justo</h4><p>Valuación basada en mercado real</p></div>
+        </div>
+        <div class="trust-item" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+            <div><h4>Atención Personal</h4><p>Asesores especializados disponibles</p></div>
+        </div>
+        <div class="trust-item" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+            <div><h4>Envío Nacional Seguro</h4><p>Con seguro incluido en toda la República</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- ════ CATALOG ════ -->
+<div class="catalog-wrapper" id="catalogo">
+    <div class="catalog-section">
+        <div class="catalog-head reveal">
+            <div>
+                <p class="s-label">Catálogo Actual</p>
+                <h2 class="s-title">Piezas <em>disponibles</em></h2>
+            </div>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20relojes."
+               class="catalog-link" target="_blank" rel="noopener">
+                Ver catálogo completo
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="catalog-grid" id="catalog-grid">
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Rolex%20Submariner%20Date%20Ref.%20126610LN." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&w=600&h=600&q=80" alt="Rolex Submariner Date" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-mint">Mint</span>
+                    <p class="card-brand">Rolex</p>
+                    <h3 class="card-name">Submariner Date</h3>
+                    <p class="card-ref">Ref. 126610LN &nbsp;·&nbsp; Caja y papeles &nbsp;·&nbsp; 2022</p>
+                    <div class="card-foot">
+                        <span class="card-price">$18,500 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Rolex%20Datejust%2041." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=600&h=600&q=80" alt="Rolex Datejust 41" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-excellent">Excellent</span>
+                    <p class="card-brand">Rolex</p>
+                    <h3 class="card-name">Datejust 41</h3>
+                    <p class="card-ref">Ref. 126334 &nbsp;·&nbsp; Bisel fluted &nbsp;·&nbsp; 2021</p>
+                    <div class="card-foot">
+                        <span class="card-price">$12,800 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Patek%20Philippe%20Calatrava." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1548171915-e79a380a2a4b?auto=format&fit=crop&w=600&h=600&q=80" alt="Patek Philippe Calatrava" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-mint">Mint</span>
+                    <p class="card-brand">Patek Philippe</p>
+                    <h3 class="card-name">Calatrava</h3>
+                    <p class="card-ref">Ref. 5227G &nbsp;·&nbsp; Oro blanco 18k &nbsp;·&nbsp; 2020</p>
+                    <div class="card-foot">
+                        <span class="card-price">$28,000 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Audemars%20Piguet%20Royal%20Oak." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&h=600&q=80" alt="Audemars Piguet Royal Oak" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-excellent">Excellent</span>
+                    <p class="card-brand">Audemars Piguet</p>
+                    <h3 class="card-name">Royal Oak</h3>
+                    <p class="card-ref">Ref. 15510ST &nbsp;·&nbsp; Esfera azul &nbsp;·&nbsp; 2021</p>
+                    <div class="card-foot">
+                        <span class="card-price">$45,000 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Cartier%20Santos%20de%20Cartier." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&h=600&q=80" alt="Cartier Santos de Cartier" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-very-good">Very Good</span>
+                    <p class="card-brand">Cartier</p>
+                    <h3 class="card-name">Santos de Cartier</h3>
+                    <p class="card-ref">Ref. WSSA0018 &nbsp;·&nbsp; Large &nbsp;·&nbsp; Acero 2023</p>
+                    <div class="card-foot">
+                        <span class="card-price">$9,500 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20interesa%20el%20Omega%20Speedmaster%20Moonwatch." class="watch-card" target="_blank" rel="noopener">
+                <div class="card-img-wrap"><img class="card-img-inner" src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=600&h=600&q=80" alt="Omega Speedmaster Moonwatch" loading="lazy"></div>
+                <div class="card-body">
+                    <span class="card-badge badge-mint">Mint</span>
+                    <p class="card-brand">Omega</p>
+                    <h3 class="card-name">Speedmaster Moonwatch</h3>
+                    <p class="card-ref">Ref. 310.30.42.50.01.001 &nbsp;·&nbsp; 2023</p>
+                    <div class="card-foot">
+                        <span class="card-price">$6,800 USD</span>
+                        <span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ════ BRANDS ════ -->
+<div class="brands-wrapper" aria-label="Marcas que manejamos">
+    <div class="brands-inner">
+        <span class="brand-sep">Manejamos</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Rolex</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Patek Philippe</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Audemars Piguet</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Cartier</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Omega</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">IWC</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-name">Hublot</span>
+    </div>
+</div>
+
+<!-- ════ CONSIGNMENT ════ -->
+<div class="consign-wrapper" id="consignacion">
+    <div class="consign-inner">
+        <div class="consign-img-wrap reveal-l">
+            <img class="consign-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Servicio de consignación de relojes de lujo" loading="lazy">
+            <div class="consign-badge" aria-hidden="true">
+                <span class="big">100%</span>
+                <p>Proceso transparente</p>
+            </div>
+        </div>
+        <div class="reveal-r">
+            <p class="s-label">Consignación</p>
+            <h2 class="s-title">Tu reloj puede<br>seguir <em>trabajando</em></h2>
+            <div style="height:24px"></div>
+            <p class="consign-desc">Si tienes un reloj que ya no usas, no lo dejes guardado. Lo vendemos por ti con autenticación profesional, fotografía editorial y acceso a nuestra red de compradores calificados.</p>
+            <p class="consign-desc"><strong>Tú defines el precio. Nosotros hacemos el resto.</strong></p>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-n">01</span>
+                    <div>
+                        <h4>Evaluación gratuita</h4>
+                        <p>Nos visitas o enviamos a recoger el reloj. Analizamos condición, documentos, movimiento y mercado para darte una valuación honesta.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-n">02</span>
+                    <div>
+                        <h4>Acuerdo y publicación</h4>
+                        <p>Firmamos un acuerdo claro. Fotografiamos el reloj con calidad editorial y lo publicamos en nuestras plataformas y red de compradores.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-n">03</span>
+                    <div>
+                        <h4>Venta y pago seguro</h4>
+                        <p>Al cerrar la venta recibes tu pago de forma inmediata. Sin sorpresas ni descuentos ocultos.</p>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20gustar%C3%ADa%20consignar%20mi%20reloj%20con%20Empor%20Watches."
+               class="btn btn-dark" target="_blank" rel="noopener">
+                Consignar mi reloj
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ════ ABOUT ════ -->
+<div class="about-wrapper" id="nosotros">
+    <div class="about-inner">
+        <div class="reveal-l">
+            <p class="about-label">Quiénes somos</p>
+            <h2 class="about-title">Expertos en el arte<br>de <em>medir</em> el tiempo</h2>
+            <p class="about-text">Émpor Watches nació de una obsesión: hacer que el mercado de relojes de lujo sea tan confiable como los propios relojes que vendemos.</p>
+            <p class="about-text">Somos especialistas en la compra, venta y consignación de relojes de alta gama. Cada pieza que pasa por nuestras manos es evaluada con criterios de autenticidad rigurosos, porque no estás comprando un objeto — estás haciendo una inversión.</p>
+            <p class="about-text">Conocemos cada referencia, cada calibre, cada detalle que distingue una pieza excepcional. En Émpor, el tiempo tiene valor. Y tú mereces que alguien lo cuide.</p>
+            <div class="about-stats">
+                <div class="stat"><div class="stat-num">5+</div><p class="stat-lbl">Años en el mercado</p></div>
+                <div class="stat"><div class="stat-num">300+</div><p class="stat-lbl">Relojes vendidos</p></div>
+                <div class="stat"><div class="stat-num">12</div><p class="stat-lbl">Marcas manejadas</p></div>
+            </div>
+        </div>
+        <div class="about-img-wrap reveal-r">
+            <img class="about-img" src="https://images.unsplash.com/photo-1606041011872-596597976b25?auto=format&fit=crop&w=700&q=80" alt="Experto inspeccionando reloj de lujo" loading="lazy">
+            <div class="about-frame" aria-hidden="true"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ════ TESTIMONIALS ════ -->
+<div class="testi-wrapper">
+    <div class="testi-inner">
+        <div class="testi-head reveal">
+            <p class="s-label" style="display:inline-block;">Lo que dicen nuestros clientes</p>
+            <h2 class="s-title">Confianza <em>comprobada</em></h2>
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card reveal">
+                <p class="testi-quote">"Compré mi Rolex Submariner con Émpor y la experiencia fue impecable. Me mostraron todo — documentos, historial, los detalles del movimiento. En ningún momento dudé de la autenticidad."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" alt="Carlos M." loading="lazy"></div>
+                    <div><strong>Carlos M.</strong><span>Comprador · Rolex Submariner Date</span></div>
+                </div>
+            </div>
+            <div class="testi-card reveal" style="transition-delay:.15s">
+                <p class="testi-quote">"Consigné mi Patek con ellos y en tres semanas estaba vendido, al precio que pedí. El proceso fue completamente transparente y el pago fue inmediato. Los recomiendo sin dudarlo."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" alt="Alejandra V." loading="lazy"></div>
+                    <div><strong>Alejandra V.</strong><span>Consignación · Patek Philippe Nautilus</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════ CONTACT ════ -->
+<div class="contact-wrapper" id="contacto">
+    <div class="contact-inner">
+        <div class="reveal-l">
+            <p class="s-label">Contacto</p>
+            <h2 class="contact-h2">Hablemos<br>de <em>tu reloj</em></h2>
+            <p class="contact-desc">Estamos listos para asesorarte en compra, venta o consignación. Respondemos en menos de 2 horas en horario hábil.</p>
+            <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                <a href="tel:+529993421623" style="text-decoration:none;color:inherit;">+52 999 342 1623</a>
+            </div>
+            <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                <a href="mailto:contacto@emporwatches.com" style="text-decoration:none;color:inherit;">contacto@emporwatches.com</a>
+            </div>
+            <div class="contact-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                Mérida, Yucatán &nbsp;·&nbsp; México
+            </div>
+            <a href="https://wa.me/529993421623?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Empor%20Watches."
+               class="wa-cta" target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Escribir por WhatsApp
+            </a>
+        </div>
+        <div class="reveal-r">
+            <form class="form" id="contactForm" novalidate>
+                <div class="fg"><label for="nombre">Nombre completo</label><input id="nombre" type="text" placeholder="Tu nombre completo" required></div>
+                <div class="fg"><label for="tel">Teléfono / WhatsApp</label><input id="tel" type="tel" placeholder="+52 999 000 0000"></div>
+                <div class="fg"><label for="email">Correo electrónico</label><input id="email" type="email" placeholder="tu@correo.com" required></div>
+                <div class="fg">
+                    <label for="servicio">¿En qué podemos ayudarte?</label>
+                    <select id="servicio">
+                        <option value="">Selecciona una opción</option>
+                        <option>Quiero comprar un reloj</option>
+                        <option>Quiero vender mi reloj</option>
+                        <option>Consignación de reloj</option>
+                        <option>Valuación / asesoría</option>
+                        <option>Otra consulta</option>
+                    </select>
+                </div>
+                <div class="fg"><label for="msg">Mensaje</label><textarea id="msg" placeholder="Cuéntanos más sobre lo que buscas..."></textarea></div>
+                <button type="submit" class="form-submit" id="submitBtn">Enviar mensaje</button>
+                <p id="form-success" style="display:none;font-size:13px;color:var(--gold);margin-top:4px;font-weight:600;">✓ Mensaje recibido. Te contactaremos pronto.</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <div class="f-logo">
+                <svg class="f-logo-svg" aria-hidden="true"><use href="#empor-logo"/></svg>
+                ÉMPOR <span>Watches</span>
+            </div>
+            <p class="f-desc">Especialistas en compra, venta y consignación de relojes de alta gama en México. Autenticidad garantizada en cada pieza.</p>
+            <div class="f-social">
+                <a href="https://www.instagram.com/emporwatches/" class="f-soc" aria-label="Instagram" target="_blank" rel="noopener">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://wa.me/529993421623" class="f-soc" aria-label="WhatsApp" target="_blank" rel="noopener">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="f-col">
+            <h5>Servicios</h5>
+            <ul>
+                <li><a href="#catalogo">Comprar un reloj</a></li>
+                <li><a href="https://wa.me/529993421623?text=Quiero%20vender%20mi%20reloj" target="_blank" rel="noopener">Vender mi reloj</a></li>
+                <li><a href="#consignacion">Consignación</a></li>
+                <li><a href="https://wa.me/529993421623?text=Necesito%20asesor%C3%ADa%20de%20relojes" target="_blank" rel="noopener">Asesoría experta</a></li>
+            </ul>
+        </div>
+        <div class="f-col">
+            <h5>Marcas</h5>
+            <ul>
+                <li><a href="#catalogo">Rolex</a></li>
+                <li><a href="#catalogo">Patek Philippe</a></li>
+                <li><a href="#catalogo">Audemars Piguet</a></li>
+                <li><a href="#catalogo">Cartier</a></li>
+                <li><a href="#catalogo">Omega</a></li>
+            </ul>
+        </div>
+        <div class="f-col">
+            <h5>Contacto</h5>
+            <ul>
+                <li><a href="tel:+529993421623">+52 999 342 1623</a></li>
+                <li><a href="mailto:contacto@emporwatches.com">contacto@emporwatches.com</a></li>
+                <li><a href="#nosotros">Mérida, Yucatán</a></li>
+                <li><a href="https://www.instagram.com/emporwatches/" target="_blank" rel="noopener">@emporwatches</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom" style="max-width:1320px;margin:0 auto;">
+        <p>© 2026 Émpor Watches. Todos los derechos reservados.</p>
+        <p class="f-tagline">"Cada reloj tiene una historia. El tuyo merece las mejores manos."</p>
+    </div>
+</footer>
+
+<!-- ════ WHATSAPP FLOAT ════ -->
+<div class="wa-float" aria-label="Contactar por WhatsApp">
+    <span class="wa-label-bubble">¿Necesitas ayuda?</span>
+    <a href="https://wa.me/529993421623?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20Empor%20Watches."
+       class="wa-btn-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+</div>
+
+<script>
+    const nav = document.getElementById('navbar');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    let mobOpen = false;
+    function toggleMob() {
+        mobOpen = !mobOpen;
+        document.getElementById('mob-menu').style.display = mobOpen ? 'flex' : 'none';
+        document.body.style.overflow = mobOpen ? 'hidden' : '';
+    }
+
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => revealObs.observe(el));
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre   = document.getElementById('nombre').value.trim();
+        const email    = document.getElementById('email').value.trim();
+        const servicio = document.getElementById('servicio').value;
+        const msg      = document.getElementById('msg').value.trim();
+        if (!nombre || !email) return;
+        const text = encodeURIComponent(
+            `Hola, soy ${nombre} (${email}).\n` +
+            (servicio ? `Consulta: ${servicio}\n` : '') +
+            (msg ? `\n${msg}` : '')
+        );
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        setTimeout(() => {
+            window.open(`https://wa.me/529993421623?text=${text}`, '_blank');
+            document.getElementById('form-success').style.display = 'block';
+            btn.textContent = '✓ Enviado';
+            this.reset();
+        }, 600);
+    });
+
+    document.querySelectorAll('.watch-card').forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'link');
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+        });
+    });
+</script>
+
+<!-- ════ SUPABASE DYNAMIC CATALOG ════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="empor-config.js"></script>
+<script>
+(async function loadCatalog() {
+    // Skip if Supabase is not yet configured
+    if (typeof EMPOR === 'undefined' || EMPOR.supabaseUrl === 'TU_SUPABASE_URL') return;
+
+    const grid = document.getElementById('catalog-grid');
+    if (!grid) return;
+
+    // Fade while fetching
+    grid.style.opacity = '0.4';
+    grid.style.transition = 'opacity .3s';
+
+    try {
+        const { createClient } = window.supabase;
+        const sb = createClient(EMPOR.supabaseUrl, EMPOR.supabaseKey);
+
+        const { data: watches, error } = await sb
+            .from('watches')
+            .select('*')
+            .eq('status', 'available')
+            .order('featured',   { ascending: false })
+            .order('created_at', { ascending: false })
+            .limit(6);
+
+        if (error) throw error;
+
+        grid.style.opacity = '';
+
+        if (!watches || !watches.length) {
+            grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:80px 20px">
+                <p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:16px;color:var(--charcoal)">Catálogo en actualización</p>
+                <p style="font-size:14px;color:var(--muted);margin-bottom:28px">Escríbenos y te mostramos las piezas disponibles.</p>
+                <a href="https://wa.me/${EMPOR.whatsapp}?text=Hola%2C%20quisiera%20ver%20el%20cat%C3%A1logo%20completo%20de%20relojes."
+                   class="btn btn-dark" target="_blank" rel="noopener">
+                   Ver catálogo completo
+                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>`;
+            return;
+        }
+
+        grid.innerHTML = watches.map(function(w) {
+            var cClass = {'Mint':'badge-mint','Excellent':'badge-excellent','Very Good':'badge-very-good'};
+            var price  = w.price ? '$' + Number(w.price).toLocaleString('en-US') + ' ' + (w.currency || 'USD') : 'Precio a consultar';
+            var wa     = encodeURIComponent('Hola, me interesa el ' + w.brand + ' ' + w.model + (w.reference ? ' Ref. ' + w.reference : '') + '.');
+            var ref    = [w.reference ? 'Ref. ' + w.reference : '', w.year ? String(w.year) : ''].filter(Boolean).join(' · ');
+            var imgH   = w.image_url
+                ? '<img class="card-img-inner" src="' + xss(w.image_url) + '" alt="' + xss(w.brand + ' ' + w.model) + '" loading="lazy">'
+                : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;letter-spacing:.2em;text-transform:uppercase">Sin foto</div>';
+            return '<a href="https://wa.me/' + EMPOR.whatsapp + '?text=' + wa + '" class="watch-card" target="_blank" rel="noopener">' +
+                '<div class="card-img-wrap">' + imgH + '</div>' +
+                '<div class="card-body">' +
+                    '<span class="card-badge ' + (cClass[w.condition] || 'badge-excellent') + '">' + xss(w.condition || 'Excellent') + '</span>' +
+                    '<p class="card-brand">' + xss(w.brand) + '</p>' +
+                    '<h3 class="card-name">' + xss(w.model) + '</h3>' +
+                    '<p class="card-ref">' + xss(ref) + '</p>' +
+                    '<div class="card-foot">' +
+                        '<span class="card-price">' + price + '</span>' +
+                        '<span class="card-cta">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>' +
+                    '</div>' +
+                '</div>' +
+            '</a>';
+        }).join('');
+
+        // Re-apply keyboard a11y
+        grid.querySelectorAll('.watch-card').forEach(function(card) {
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'link');
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+            });
+        });
+
+    } catch (err) {
+        console.warn('[Émpor] No se pudo cargar el catálogo:', err.message);
+        document.getElementById('catalog-grid').style.opacity = '';
+        // Hardcoded cards remain visible as fallback
+    }
+})();
+
+function xss(s) {
+    return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
