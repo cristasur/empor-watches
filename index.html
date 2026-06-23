@@ -1049,7 +1049,7 @@
 
 <!-- ════ HERO ════ -->
 <section class="hero" id="inicio" aria-label="Portada Émpor Watches">
-    <div class="hero-bg" role="img" aria-label="Reloj de lujo"></div>
+    <div class="hero-bg" id="hero-bg" role="img" aria-label="Reloj de lujo"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <p class="hero-eyebrow">Compra &nbsp;·&nbsp; Venta &nbsp;·&nbsp; Consignación &nbsp;·&nbsp; Asesoría</p>
@@ -1226,7 +1226,7 @@
 <div class="consign-wrapper" id="consignacion">
     <div class="consign-inner">
         <div class="consign-img-wrap reveal-l">
-            <img class="consign-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Servicio de consignación de relojes de lujo" loading="lazy">
+            <img class="consign-img" id="consign-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Servicio de consignación de relojes de lujo" loading="lazy">
             <div class="consign-badge" aria-hidden="true">
                 <span class="big">100%</span>
                 <p>Proceso transparente</p>
@@ -1286,7 +1286,7 @@
             </div>
         </div>
         <div class="about-img-wrap reveal-r">
-            <img class="about-img" src="https://images.unsplash.com/photo-1606041011872-596597976b25?auto=format&fit=crop&w=700&q=80" alt="Experto inspeccionando reloj de lujo" loading="lazy">
+            <img class="about-img" id="about-img" src="https://images.unsplash.com/photo-1606041011872-596597976b25?auto=format&fit=crop&w=700&q=80" alt="Experto inspeccionando reloj de lujo" loading="lazy">
             <div class="about-frame" aria-hidden="true"></div>
         </div>
     </div>
@@ -1623,6 +1623,32 @@ function updateBrandFilters(watches) {
 function xss(s) {
     return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+// ── Load site images ──────────────────────────────────────────────────────
+(async function loadSiteImages() {
+    if (typeof EMPOR === 'undefined' || EMPOR.supabaseUrl === 'TU_SUPABASE_URL') return;
+    try {
+        const { createClient } = window.supabase;
+        const sb = createClient(EMPOR.supabaseUrl, EMPOR.supabaseKey);
+        const { data } = await sb.from('site_images').select('*');
+        if (!data) return;
+        data.forEach(function(row) {
+            if (!row.image_url) return;
+            if (row.key === 'hero') {
+                var el = document.getElementById('hero-bg');
+                if (el) el.style.backgroundImage = "url('" + row.image_url + "')";
+            }
+            if (row.key === 'consign') {
+                var el = document.getElementById('consign-img');
+                if (el) el.src = row.image_url;
+            }
+            if (row.key === 'about') {
+                var el = document.getElementById('about-img');
+                if (el) el.src = row.image_url;
+            }
+        });
+    } catch(e) { /* silencioso */ }
+})();
 </script>
 </body>
 </html>

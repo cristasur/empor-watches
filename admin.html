@@ -571,6 +571,26 @@
     .empty-txt     { font-size: 13px; color: var(--muted); padding: 24px 0 8px; }
     .loading-txt   { grid-column: 1/-1; text-align: center; padding: 48px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 
+    /* ── Site images ────────────────────────────────────────────────────── */
+    .site-imgs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+    }
+    .site-img-card { background: var(--white); border: 1px solid var(--border); overflow: hidden; }
+    .site-img-preview {
+      width: 100%; height: 190px;
+      overflow: hidden; background: var(--warm);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .site-img-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .site-img-no-img { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(107,101,96,.45); }
+    .site-img-info { padding: 16px 18px 18px; }
+    .site-img-key  { font-size: 9px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .site-img-name { font-family: var(--serif); font-size: 18px; margin-bottom: 5px; }
+    .site-img-desc { font-size: 12px; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+
     /* ── Responsive ─────────────────────────────────────────────────────── */
     @media (max-width: 660px) {
       .topbar   { padding: 0 16px; }
@@ -647,6 +667,9 @@
         <button class="tab" data-tab="brands" onclick="switchTab('brands')">
           Marcas <span id="badge-brands" class="tab-badge">0</span>
         </button>
+        <button class="tab" data-tab="site" onclick="switchTab('site')">
+          Sitio
+        </button>
       </nav>
     </div>
     <div class="tb-right">
@@ -689,6 +712,16 @@
       </div>
       <div id="brands-list" class="brands-list">
         <div class="loading-txt">Cargando...</div>
+      </div>
+    </div>
+
+    <!-- Site images panel -->
+    <div id="panel-site" style="display:none">
+      <div class="panel-hd">
+        <h2 class="panel-title">Imágenes del sitio</h2>
+      </div>
+      <div class="site-imgs-grid" id="site-imgs-grid">
+        <div class="loading-txt" style="grid-column:1/-1">Cargando...</div>
       </div>
     </div>
 
@@ -882,11 +915,12 @@ function switchTab(tab) {
   );
   document.getElementById('panel-watches').style.display = tab === 'watches' ? 'block' : 'none';
   document.getElementById('panel-brands').style.display  = tab === 'brands'  ? 'block' : 'none';
+  document.getElementById('panel-site').style.display    = tab === 'site'    ? 'block' : 'none';
 }
 
 // ── Load everything ────────────────────────────────────────────────────────
 async function loadAll() {
-  await Promise.all([loadWatches(), loadBrands()]);
+  await Promise.all([loadWatches(), loadBrands(), loadSiteImages()]);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -1221,6 +1255,79 @@ async function deleteBrand(id, name) {
   if (error) { toast('Error al eliminar', false); return; }
   toast(`Marca "${name}" eliminada`);
   loadBrands();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  SITE IMAGES
+// ═══════════════════════════════════════════════════════════════════════════
+const SITE_ITEMS = [
+  { key: 'hero',    name: 'Portada',       desc: 'Foto de fondo del inicio (el reloj grande)' },
+  { key: 'consign', name: 'Consignación',  desc: 'Foto de la sección "Tu reloj puede seguir trabajando"' },
+  { key: 'about',   name: 'Nosotros',      desc: 'Foto de la sección "Expertos en el arte de medir el tiempo"' },
+];
+
+let siteImgs = {};
+
+async function loadSiteImages() {
+  const { data, error } = await sb.from('site_images').select('*');
+  if (error) return;
+  siteImgs = {};
+  (data || []).forEach(r => { siteImgs[r.key] = r.image_url; });
+  renderSiteImages();
+}
+
+function renderSiteImages() {
+  const grid = document.getElementById('site-imgs-grid');
+  grid.innerHTML = SITE_ITEMS.map(item => `
+    <div class="site-img-card">
+      <div class="site-img-preview">
+        ${siteImgs[item.key]
+          ? `<img src="${esc(siteImgs[item.key])}" alt="${item.name}">`
+          : `<span class="site-img-no-img">Sin imagen</span>`}
+      </div>
+      <div class="site-img-info">
+        <p class="site-img-key">${item.key}</p>
+        <p class="site-img-name">${item.name}</p>
+        <p class="site-img-desc">${item.desc}</p>
+        <button class="btn-primary w-full" onclick="triggerSiteImg('${item.key}')">Cambiar imagen</button>
+        <input type="file" id="si-${item.key}" accept="image/*" style="display:none"
+               onchange="uploadSiteImg('${item.key}', this)">
+      </div>
+    </div>`
+  ).join('');
+}
+
+function triggerSiteImg(key) {
+  document.getElementById('si-' + key).click();
+}
+
+async function uploadSiteImg(key, input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 8 * 1024 * 1024) { toast('Imagen muy grande (máx. 8MB)', false); return; }
+
+  toast('Subiendo imagen...');
+
+  const ext  = file.name.split('.').pop() || 'jpg';
+  const path = `site-${key}-${Date.now()}.${ext}`;
+
+  const { error: upErr } = await sb.storage
+    .from('watch-images')
+    .upload(path, file, { upsert: true, contentType: file.type });
+
+  if (upErr) { toast('Error subiendo: ' + upErr.message, false); return; }
+
+  const { data: { publicUrl } } = sb.storage.from('watch-images').getPublicUrl(path);
+
+  const { error: dbErr } = await sb.from('site_images')
+    .upsert({ key, image_url: publicUrl, updated_at: new Date().toISOString() });
+
+  if (dbErr) { toast('Error guardando: ' + dbErr.message, false); return; }
+
+  siteImgs[key] = publicUrl;
+  toast(`Imagen "${key}" actualizada ✓`);
+  renderSiteImages();
+  input.value = '';
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
