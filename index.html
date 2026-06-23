@@ -11,6 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="empor-config.js"></script>
+    <script>
+        if (window.EMPOR && EMPOR.supabaseUrl !== 'TU_SUPABASE_URL')
+            document.documentElement.classList.add('has-supabase');
+    </script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -998,6 +1003,9 @@
 
         .catalog-empty p { font-family: var(--serif); font-size: 22px; margin-bottom: 10px; color: var(--charcoal); }
         .catalog-empty span { font-size: 14px; }
+
+        /* Hide catalog grid instantly if Supabase is configured — prevents flash of placeholder cards */
+        .has-supabase #catalog-grid { opacity: 0; transition: opacity .45s ease; }
     </style>
 </head>
 <body>
@@ -1487,7 +1495,6 @@
 
 <!-- ════ SUPABASE DYNAMIC CATALOG ════ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="empor-config.js"></script>
 <script>
 // ── Brand filter (works for both static and dynamic catalog) ──────────────
 var _cachedWatches = [];  // filled by Supabase; empty = use static cards
@@ -1584,10 +1591,6 @@ function updateBrandFilters(watches) {
     const grid = document.getElementById('catalog-grid');
     if (!grid) return;
 
-    // Fade while fetching
-    grid.style.opacity = '0.4';
-    grid.style.transition = 'opacity .3s';
-
     try {
         const { createClient } = window.supabase;
         const sb = createClient(EMPOR.supabaseUrl, EMPOR.supabaseKey);
@@ -1602,20 +1605,20 @@ function updateBrandFilters(watches) {
 
         if (error) throw error;
 
-        grid.style.opacity = '';
-
         if (!watches || !watches.length) {
             grid.innerHTML = '<div class="catalog-empty"><p>Catálogo en actualización</p><span>Escríbenos y te mostramos las piezas disponibles.</span></div>';
+            document.documentElement.classList.remove('has-supabase');
             return;
         }
 
         _cachedWatches = watches;
         updateBrandFilters(watches);   // construye los botones UNA sola vez
         renderWatchCards(watches);
+        document.documentElement.classList.remove('has-supabase');
 
     } catch (err) {
         console.warn('[Émpor] No se pudo cargar el catálogo:', err.message);
-        document.getElementById('catalog-grid').style.opacity = '';
+        document.documentElement.classList.remove('has-supabase');
         // Hardcoded cards remain visible as fallback
     }
 })();
