@@ -1565,8 +1565,6 @@ function renderWatchCards(watches) {
         });
     });
 
-    // Update brand filter buttons to only show brands that have watches
-    updateBrandFilters(watches);
 }
 
 function updateBrandFilters(watches) {
@@ -1612,6 +1610,7 @@ function updateBrandFilters(watches) {
         }
 
         _cachedWatches = watches;
+        updateBrandFilters(watches);   // construye los botones UNA sola vez
         renderWatchCards(watches);
 
     } catch (err) {
